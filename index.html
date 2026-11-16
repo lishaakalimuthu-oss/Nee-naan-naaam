@@ -1274,6 +1274,42 @@ html.motion .story-stage{position:relative!important;height:auto!important;min-h
 }
 .hero-logo{margin:16px 0 20px!important}
 @media (max-width:760px){.hero-logo{margin:12px 0 14px!important}}
+
+/* =====================================================================
+   V16 — smaller banner logo · robust phone layout
+   ===================================================================== */
+.hero-logo img{width:min(260px,40vw)!important}
+@media (max-width:900px),(pointer:coarse){
+  /* solid surfaces instead of live blur — iOS renders blur unreliably */
+  .g-chip,.ch3-card,.exp-card,.artist-grid,.t-main,.t-stub,.t-perf,.fin-grid,.bk-panel,.nav{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+  .g-chip,.ch3-card,.exp-card,.artist-grid,.fin-grid{background:linear-gradient(160deg,rgba(24,52,38,.9),rgba(8,22,15,.94))!important}
+  .t-main,.t-stub,.t-perf{background:#0a1f15!important}
+  .bk-panel{background:#06150d!important}
+  /* everything visible, nothing clipped */
+  .hero,.ch3,.exp,.artist,.pass,.finale{overflow:hidden}
+  .hero{height:auto!important;min-height:0!important}
+  [data-reveal]{opacity:1!important;transform:none!important}
+}
+@media (max-width:760px){
+  .hero{padding:calc(84px + env(safe-area-inset-top)) 16px 28px!important}
+  .g-label{font-size:11px!important}
+  .hero-logo{margin:10px 0 12px!important}
+  .hero-logo img{width:min(150px,40vw)!important}
+  .hero-sub{font-size:13.5px!important;margin:0 0 18px!important;max-width:320px}
+  .hero-actions>*{padding:13px 18px!important;font-size:13px!important}
+  .hero-chips{width:100%;padding-top:22px!important;gap:8px!important}
+  .g-chip{min-width:0;padding:11px 12px!important}
+  .g-chip strong{font-size:13px!important;overflow-wrap:anywhere}
+  .g-chip small{font-size:10.5px!important}
+  .exp-cards,.ch3-grid{gap:12px}
+  .t-cats{grid-template-columns:1fr!important}
+  .t-cat{padding:12px 14px}
+  .ticket-wrap{margin-bottom:28px}
+  .portrait{max-width:100%}
+}
+@media (max-width:330px){
+  .hero-chips{grid-template-columns:1fr!important}
+}
 </style>
 </head>
 <body>
@@ -1632,7 +1668,8 @@ const lerp = (a, b, t) => a + (b - a) * t;
 const smooth = (a, b, x) => { const t = clamp((x - a) / (b - a)); return t * t * (3 - 2 * t); };
 const root = document.documentElement;
 const IMG = k => (CFG.images && CFG.images[k]) || (window.NNN_STOCK || {})[k] || '';
-const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const PHONE = matchMedia('(max-width: 900px)').matches || matchMedia('(pointer: coarse)').matches;
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches || PHONE; // phones: static, always-visible layout
 const FINE = matchMedia('(hover: hover) and (pointer: fine)').matches;
 const HAS_GSAP = !!(window.gsap && window.ScrollTrigger);
 const MOTION = !REDUCED && HAS_GSAP;
@@ -2111,7 +2148,7 @@ function reveal() {
 loader.addEventListener('click', reveal);
 const countEl = $('[data-count]'); let countTween = null;
 if (MOTION && !REDUCED) { const c = { v: 0 }; countTween = gsap.to(c, { v: 100, duration: 2.6, ease: 'power2.in', onUpdate: () => { const v = Math.floor(c.v); countEl.textContent = v < 10 ? '0' + v : v; } }); }
-const minWait = new Promise(r => setTimeout(r, REDUCED ? 400 : 3000));
+const minWait = new Promise(r => setTimeout(r, PHONE ? 1600 : REDUCED ? 400 : 3000));
 const fontsReady = (document.fonts && document.fonts.ready) || Promise.resolve();
 Promise.all([minWait, fontsReady]).then(reveal);
 setTimeout(reveal, 6000);
