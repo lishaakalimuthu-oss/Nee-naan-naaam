@@ -1261,6 +1261,19 @@ html.motion [data-split]{background:none;-webkit-text-fill-color:initial}
   .hero-chips{padding-top:20px}
   .g-chip strong{font-size:12.5px}
 }
+
+/* =====================================================================
+   V15 — smaller banner logo · calm, glitch-free scrolling
+   ===================================================================== */
+.hero-logo img{width:min(340px,58vw)!important}
+html.motion .story{height:auto!important}
+html.motion .story-stage{position:relative!important;height:auto!important;min-height:0!important;padding:14vh clamp(20px,6vw,90px) 12vh!important}
+@media (max-width:760px){
+  .hero-logo img{width:min(200px,52vw)!important}
+  html.motion .story-stage{padding:10vh 20px 8vh!important}
+}
+.hero-logo{margin:16px 0 20px!important}
+@media (max-width:760px){.hero-logo{margin:12px 0 14px!important}}
 </style>
 </head>
 <body>
@@ -2146,12 +2159,11 @@ let fitT; addEventListener('resize', () => { clearTimeout(fitT); fitT = setTimeo
 let storyMotion = null;
 function initSplits() {
   if (!MOTION) return;
-  if (storyMotion && innerWidth > 1024) storyMotion();
+  gsap.from(['.story-copy .kicker', '.story-h', '.story-p', '.story-p2', '.story-sign'], { opacity: 0, y: 26, stagger: .1, duration: 1, scrollTrigger: { trigger: '.story-copy', start: 'top 80%', once: true } });
+  gsap.from('.story-visual', { opacity: 0, y: 40, duration: 1.1, scrollTrigger: { trigger: '.story-visual', start: 'top 85%', once: true } });
   // hero wordmark: chars rise out of a mask, then drift down on scroll (parallax)
   gsap.from('.hero-c > *', { opacity: 0, y: 30, stagger: .1, duration: 1.1, delay: .2 });
   gsap.from('.g-chip', { opacity: 0, y: 24, stagger: .07, duration: 1, delay: .6 });
-  if (!SMALL) gsap.to('.stage', { yPercent: 10, ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true } });
-  if (!SMALL) gsap.fromTo('.hero-c', { opacity: 1, y: 0 }, { opacity: 0, y: -40, ease: 'none', immediateRender: false, scrollTrigger: { trigger: '#hero', start: 'top top', end: '60% top', scrub: true } });
   // headings: lines slide up out of a mask
   $$('[data-split]').forEach(el => {
     if (HAS_SPLIT) {
@@ -2166,11 +2178,7 @@ function initSplits() {
     gsap.fromTo(sp.words, { opacity: .25 }, { opacity: 1, stagger: .1, ease: 'none', scrollTrigger: { trigger: el, start: 'top 82%', end: 'bottom 55%', scrub: 1 } });
   });
   // labels: binary scramble on first view
-  if (HAS_SCRAMBLE) $$('.kicker').forEach(el => {
-    if (el.closest('.story-copy') || el.closest('.sig-head')) return;
-    const txt = el.textContent;
-    ScrollTrigger.create({ trigger: el, start: 'top 90%', once: true, onEnter: () => gsap.fromTo(el, { scrambleText: { text: '' } }, { duration: 1, scrambleText: { text: txt, chars: '01', revealDelay: .1, speed: .5 } }) });
-  });
+  $$('.kicker').forEach(el => { if (el.closest('.story-copy')) return; gsap.from(el, { opacity: 0, y: 12, duration: .8, scrollTrigger: { trigger: el, start: 'top 90%', once: true } }); });
   // images: open from the centre (clip-path inset 50% → 0)
   const clip = (el, trigger) => gsap.fromTo(el, { clipPath: 'inset(50%)' }, { clipPath: 'inset(0%)', ease: 'none', scrollTrigger: { trigger: trigger || el, start: 'top 80%', end: 'top 20%', scrub: 2 } });
   gsap.from('.ch3-card', { opacity: 0, y: 40, stagger: .12, duration: 1.1, scrollTrigger: { trigger: '.ch3-grid', start: 'top 85%', once: true } });
