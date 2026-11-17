@@ -1538,6 +1538,11 @@ html.motion .story-stage{position:relative!important;height:auto!important;min-h
   .bk-main{padding:24px 18px 34px!important}
   .co-paybtn{position:sticky;bottom:12px;z-index:2;box-shadow:0 14px 40px -10px rgba(0,0,0,.8)!important}
 }
+/* V22 — brand heading in story · strike price in banner */
+.st3-wrap .story-h.story-brand{font-family:'Pinyon Script',cursive!important;font-weight:400!important;color:var(--gold)!important;font-size:clamp(64px,6.4vw,104px)!important;line-height:1!important;letter-spacing:0!important;margin:0 0 20px!important;-webkit-text-fill-color:currentColor}
+@media (max-width:760px){.st3-wrap .story-h.story-brand{font-size:clamp(54px,15vw,72px)!important;margin-bottom:16px!important}}
+.ev-pr{display:flex;align-items:baseline;gap:8px}
+.ev-pr s{font-size:13px;font-weight:500;opacity:.55}
 </style>
 </head>
 <body>
@@ -1609,7 +1614,7 @@ html.motion .story-stage{position:relative!important;height:auto!important;min-h
       <span data-cfg="event.city" data-nochip="1"></span>
     </div>
     <button class="ev-book" type="button" data-open-booking>
-      <span class="ev-book-t"><small>Early bird · Couple pass</small><b data-ev-price>₹4,099</b></span>
+      <span class="ev-book-t"><small>Early bird · Couple pass</small><span class="ev-pr"><s data-ev-regular>₹4,999</s><b data-ev-price>₹3,999</b></span></span>
       <span class="ev-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
     </button>
   </div>
@@ -1619,8 +1624,7 @@ html.motion .story-stage{position:relative!important;height:auto!important;min-h
 <section class="story st3" id="story" data-label="The Story">
   <div class="st3-wrap">
   <header class="st3-head">
-    <p class="kicker">01 — The story begins</p>
-    <h2 class="story-h"><span class="line">Some feelings don't need words.</span><span class="line em">They need a song.</span></h2>
+    <h2 class="story-h story-brand">Nee Naan Naam</h2>
     <p class="story-p">Welcome to Nee Naan Naam, an intimate musical storytelling experience that takes you through the beautiful phases of love, brought alive through timeless melodies, heartfelt stories and unforgettable performances.</p>
   </header>
   <div class="st3-grid">
@@ -1651,7 +1655,6 @@ html.motion .story-stage{position:relative!important;height:auto!important;min-h
       </div>
     </figure>
     <div class="artist-copy">
-      <p class="kicker">02 — The artist</p>
       <h2 class="artist-name" aria-label="Aravind Karneeswaran"><span class="am"><span class="ai">Aravind</span></span><span class="am"><span class="ai">Karneeswaran</span></span></h2>
       <p class="artist-sub">The Voice Behind the Emotions.</p>
       <p class="body" data-chars>A passionate singer and performer, Aravind brings music and storytelling together to create memorable experiences. With a love for timeless melodies and contemporary music, he takes audiences on an emotional journey through the many shades of love.</p>
@@ -1664,9 +1667,8 @@ html.motion .story-stage{position:relative!important;height:auto!important;min-h
 <!-- ============ PASS ============ -->
 <section class="pass" id="pass" data-label="The Pass">
   <header class="pass-head">
-    <p class="kicker">03 — The concert pass</p>
     <h2 data-split>Your invitation <em>to the evening.</em></h2>
-    <p>VGP Heritage Parijatham Garden, Chennai · 25 December 2026 · 6:30 PM</p>
+    <p>VGP Heritage / Parijatham Garden, ECR, Chennai · 25 December 2026 · 6:30 PM</p>
   </header>
   <div class="ticket-wrap" data-reveal>
     <div class="ticket" id="ticket">
@@ -1692,7 +1694,7 @@ html.motion .story-stage{position:relative!important;height:auto!important;min-h
       </div>
     </div>
   </div>
-  <button class="btn-gold" type="button" data-open-booking>Be Part of the Story
+  <button class="btn-gold" type="button" data-open-booking>Book now
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
 </section>
 
@@ -1736,8 +1738,7 @@ html.motion .story-stage{position:relative!important;height:auto!important;min-h
       <form class="bk-form" id="bkForm" novalidate>
         <p class="co-kick">Secure checkout</p>
         <h3 id="bk-title">Book your couple pass</h3>
-        <ol class="co-steps" aria-hidden="true"><li class="on"><i>1</i>Pass</li><li class="on"><i>2</i>Details</li><li><i>3</i>Pay</li></ol>
-        <fieldset class="co-sec"><legend><span class="co-n">01</span>Your pass</legend>
+        <fieldset class="co-sec"><legend>Your pass</legend>
           <div class="bk-cats" data-bk-cats></div>
           <div class="bk-qty">
             <span class="fl" id="qtyLbl">Couple passes <small data-bk="guests">· 2 guests</small></span>
@@ -1748,7 +1749,7 @@ html.motion .story-stage{position:relative!important;height:auto!important;min-h
             </div>
           </div>
         </fieldset>
-        <fieldset class="co-sec"><legend><span class="co-n">02</span>Guest details</legend>
+        <fieldset class="co-sec"><legend>Guest details</legend>
           <p class="co-hint">Your pass confirmation is sent to this email and mobile number.</p>
           <div class="fields">
             <div class="f"><label class="fl" for="bkName">Full name</label><input id="bkName" name="name" autocomplete="name" placeholder="As it should appear on the pass" required></div>
@@ -1759,7 +1760,7 @@ html.motion .story-stage{position:relative!important;height:auto!important;min-h
         </fieldset>
         <label class="co-agree"><input type="checkbox" id="bkAgree" required><span class="cb" aria-hidden="true"></span><span>I confirm my details are correct. Passes are issued in this name.</span></label>
         <div class="co-pay">
-          <button class="btn-gold co-paybtn" type="submit" data-submit><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2"/><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7"/></svg><span data-paylabel>Pay ₹4,099</span></button>
+          <button class="btn-gold co-paybtn" type="submit" data-submit><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2"/><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7"/></svg><span data-paylabel>Pay ₹3,999</span></button>
           <p class="co-paynote">You'll complete payment in Razorpay's secure window — UPI, cards, net banking or wallets.</p>
         </div>
         <p class="bk-err" role="alert" data-bk-err></p>
@@ -1791,13 +1792,13 @@ window.NNN_CONFIG = {
     presenter: 'Slingshot MVz',
     date:  { value: '25 December 2026', confirmed: true, iso: '2026-12-25T18:30:00+05:30' },
     time:  { value: '6:30 PM',  confirmed: true },
-    venue: { value: 'VGP Heritage Parijatham Garden',  confirmed: true },
-    city:  { value: 'Chennai',          confirmed: true }
+    venue: { value: 'VGP Heritage / Parijatham Garden',  confirmed: true },
+    city:  { value: 'ECR, Chennai',     confirmed: true }
   },
   currency: '₹',
   maxPasses: 6,
   tickets: [
-    { id: 'couple', name: 'Couple Pass', label: 'Admits two', price: 4099, regular: 4999, offer: 'Early bird', confirmed: true,
+    { id: 'couple', name: 'Couple Pass', label: 'Admits two', price: 3999, regular: 4999, offer: 'Early bird', confirmed: true,
       desc: 'Entry for two, couple seating and the full Nee Naan Naam evening.' }
   ],
   booking: {
@@ -1907,7 +1908,7 @@ $('[data-ticket-cats]').innerHTML = CFG.tickets.map(t =>
 (() => { // hero event bar
   const d = CFG.event.date.iso ? new Date(CFG.event.date.iso) : null, t = CFG.tickets[0];
   if (d && !isNaN(d)) { $$('[data-ev-day]').forEach(e => e.textContent = d.getDate()); $$('[data-ev-month]').forEach(e => e.textContent = d.toLocaleString('en-IN', { month: 'long' })); $$('[data-ev-rest]').forEach(e => e.textContent = d.getFullYear() + ' · ' + CFG.event.time.value); }
-  if (t) $('[data-ev-price]').textContent = money(t.price);
+  if (t) { $('[data-ev-price]').textContent = money(t.price); const rg = $('[data-ev-regular]'); if (rg) { rg.textContent = t.regular ? money(t.regular) : ''; rg.hidden = !t.regular; } }
   if (t && t.offer) $('.ev-book-t small').textContent = t.offer + ' · ' + t.name;
 })();
 const tNo = (() => { let n; try { n = sessionStorage.getItem('nnn-tno'); } catch (e) {} if (!n) { n = String(Math.floor(1000 + Math.random() * 8999)); try { sessionStorage.setItem('nnn-tno', n); } catch (e) {} } return n; })();
