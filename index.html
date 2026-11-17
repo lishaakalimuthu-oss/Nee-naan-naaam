@@ -1650,6 +1650,16 @@ html.motion .story-stage{position:relative!important;height:auto!important;min-h
   .st3-wrap .st3-grid{justify-self:stretch!important;width:auto!important;max-width:none!important}
   .st3-wrap .st3-card{flex:0 0 76vw!important;width:76vw!important}
 }
+/* V34 — story spacing */
+@media (min-width:1025px){
+  .st3-wrap{max-width:1240px!important;margin:0 auto!important;grid-template-columns:minmax(0,1fr) 500px!important;gap:clamp(56px,6vw,96px)!important;align-items:center!important}
+  .st3-wrap .st3-grid{max-width:500px!important;justify-self:stretch!important}
+  .st3-wrap .st-copy{max-width:none!important}
+  .st3-wrap .story-h.story-brand{margin-bottom:26px!important}
+}
+.st3-wrap .st-copy{gap:20px!important}
+.st3-wrap .st-copy .story-p,.st3-wrap .st-copy .st-lead{text-justify:inter-word;word-spacing:normal;line-height:1.8!important}
+@media (max-width:760px){.st3-wrap .st-copy .story-p,.st3-wrap .st-copy .st-lead{text-align:left!important;hyphens:manual;-webkit-hyphens:manual}}
 </style>
 </head>
 <body>
@@ -1726,7 +1736,7 @@ html.motion .story-stage{position:relative!important;height:auto!important;min-h
     <h2 class="story-h story-brand">Nee Naan Naam</h2>
     <div class="st-copy">
       <p class="story-p st-lead">Some songs take us back to where it all began. The first glance, the first conversation, the butterflies of falling in love. Others remind us of the beautiful journey that followed — the laughter, the little disagreements, the unspoken understanding, and the countless moments that slowly became memories.</p>
-      <p class="story-p"><b>Nee Naan Naam – Memories Through Music</b> is an intimate, soulful musical experience celebrating love, togetherness, and the stories we carry through life. Through timeless melodies and heartfelt renditions, Aravind Karneeswaran takes you on a nostalgic journey through the different shades of love. With just his voice, a keyboard, and the warmth of an intimate gathering, every song becomes an invitation to remember, reconnect, and sing along.</p>
+      <p class="story-p"><b>Nee Naan Naam – Memories Through Music</b> is an intimate, soulful musical experience celebrating love, togetherness, and the stories we carry through life. Through timeless melodies and heartfelt renditions, Aravind Karnees&shy;waran takes you on a nostalgic journey through the different shades of love. With just his voice, a keyboard, and the warmth of an intimate gathering, every song becomes an invitation to remember, reconnect, and sing along.</p>
     </div>
   </header>
   <div class="st3-grid">
